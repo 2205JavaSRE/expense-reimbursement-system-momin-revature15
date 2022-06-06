@@ -12,4 +12,6 @@ public interface ReimbursementDao {
 	public List <Reimbursement> viewPastTickets(int employee_id);
 
 	public List<Reimbursement> pendingRequest(int employee_id);
+
+	public List<Reimbursement> allReimbursementRequests();
 }	

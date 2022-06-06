@@ -40,6 +40,10 @@ public class RequestMapper {
 			 
 		 });
 		 
+		 app.get("/allReimbursementRequests",ctx->{
+			 
+			ReimbursementController.allReimbursementRequests(ctx); 
+		 });
  }
 	
 	

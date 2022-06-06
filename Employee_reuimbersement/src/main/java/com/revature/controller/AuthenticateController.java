@@ -70,7 +70,7 @@ public class AuthenticateController {
 		{
 			System.out.println("Login Successfull");
 			ctx.result("you have access");
-			ctx.sessionAttribute("manager",manager);
+			ctx.sessionAttribute("Manager",manager);
 			ctx.sessionAttribute("role","master");
 			ctx.status(HttpStatus.ACCEPTED_202);
 			
@@ -86,7 +86,18 @@ public class AuthenticateController {
 		
 	}
 	
+	public static Employee verifyM(Context ctx) {
 
+        Employee manager = ctx.sessionAttribute("Manager");
+
+        if (manager == null) { 
+        return null;
+        }
+        else { 
+        	
+        	return manager;
+    }
+        }
 		
 		
 	public static void logout(Context ctx) {

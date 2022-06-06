@@ -16,7 +16,7 @@ import io.javalin.http.Context;
 public class ReimbursementController 
 {
 	private static EmployeeDao empl = new EmployeeDaoImpl();
-	private static ReimbursementDao re = new ReimbursementDaoImpl();
+	private static ReimbursementDao reDao = new ReimbursementDaoImpl();
 	
 	public static void submitRequest(Context ctx) {
 	
@@ -32,7 +32,7 @@ public class ReimbursementController
     
     Reimbursement r = new Reimbursement(-1,amount,reimbursement_type,"pending",emp.getEmployee_id());
     
-   re.createReimbursement(r);
+   reDao.createReimbursement(r);
     
 	}
 	
@@ -61,7 +61,7 @@ public class ReimbursementController
 		Employee emp = AuthenticateController.verify(ctx);
 		if(emp!=null) {
 			
-		              List <Reimbursement> reimbursementPendingList = re.pendingRequest(emp.getEmployee_id());
+		              List <Reimbursement> reimbursementPendingList = reDao.pendingRequest(emp.getEmployee_id());
 		              ctx.json(reimbursementPendingList);
 			
 		}
@@ -71,5 +71,21 @@ public class ReimbursementController
 	            ctx.status(HttpStatus.FORBIDDEN_403);
 	        }
 		
+	}
+	
+	
+	public static void allReimbursementRequests(Context ctx) {
+		
+		Employee manager = AuthenticateController.verifyM(ctx);
+		
+		if(manager!=null) {
+			List <Reimbursement> reimbursementList = reDao.allReimbursementRequests();
+			ctx.json(reimbursementList);
+		}
+		else {
+			ctx.result("invalid credentials.");
+            ctx.status(HttpStatus.FORBIDDEN_403);
+			
+		}
 	}
 	}

@@ -83,4 +83,24 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		return reimbursementList;
 	}
 
+	public List<Reimbursement> allReimbursementRequests() {
+		String sql = "select * from reimbursement";
+		Connection connection = ConnectionFactory.getConnection();
+		List<Reimbursement> reimbursementList = new ArrayList<>();
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+	        Reimbursement r = new Reimbursement(rs.getInt("reimbursement_id"),
+			rs.getInt("amount"), rs.getString("reimbursement_type"), rs.getString("isrequest"),
+			rs.getInt("employee_id"));
+	        reimbursementList.add(r);
+           }
+	}
+		catch (SQLException e) {
+			e.printStackTrace();
+	}
+		
+		return reimbursementList;
+}
+	
 }
