@@ -100,13 +100,23 @@ public class AuthenticateController {
         }
 		
 		
-	public static void logout(Context ctx) {
-		
+	public static void logoutE(Context ctx) {
+		Employee employee = AuthenticateController.verify(ctx);
+		if(employee !=null)
+		{
 		ctx.consumeSessionAttribute("Employee");
 		ctx.result("Logout successful.");
 	}
-
-
+		else {
+			
+			ctx.result("no session to consume");
+		}
+	}
+public static void logoutM(Context ctx) {
+		
+		ctx.consumeSessionAttribute("Manager");
+		ctx.result("Logout successful.");
+	}
 
 	
 

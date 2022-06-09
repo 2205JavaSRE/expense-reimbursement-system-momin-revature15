@@ -19,10 +19,13 @@ public class RequestMapper {
 			AuthenticateController.authentitcateManager(ctx);
 		});
 		
-		 app.get("/logout", ctx -> {
-	            AuthenticateController.logout(ctx);
+		 app.get("/logoutE", ctx -> {
+	            AuthenticateController.logoutE(ctx);
 	        });
 		 
+		 app.get("/logoutM", ctx -> {
+	            AuthenticateController.logoutM(ctx);
+	        });
 		 app.post("/submitRequest", ctx->{
 			 
 			ReimbursementController.submitRequest(ctx);		
@@ -44,9 +47,19 @@ public class RequestMapper {
 			 
 			ReimbursementController.allReimbursementRequests(ctx); 
 		 });
- }
+		 
+		 app.get("/updateStatus",ctx->{
+			 
+				ReimbursementController.updateStatus(ctx);
+			 });
+ 
+		 app.get("/viewPastHistoryEmployees",ctx->{
+			 ReimbursementController.viewPastEmployeeHistory(ctx);
+			 
+			 });
+		 
 	
-	
+	}
 	
 
-}
+	}

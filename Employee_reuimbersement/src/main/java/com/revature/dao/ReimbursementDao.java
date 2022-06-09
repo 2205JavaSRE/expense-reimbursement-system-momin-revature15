@@ -14,4 +14,8 @@ public interface ReimbursementDao {
 	public List<Reimbursement> pendingRequest(int employee_id);
 
 	public List<Reimbursement> allReimbursementRequests();
+
+	public void updateStatus(int remimbursement_id,String Status);
+
+	public List<Reimbursement> getReimbursementById(int employee_id);
 }	

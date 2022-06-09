@@ -44,7 +44,7 @@ public class ReimbursementController
 		Employee emp = AuthenticateController.verify(ctx);
 		if(emp!=null) {
 			
-		              List <Reimbursement> reimbursementList = re.viewPastTickets(emp.getEmployee_id());
+		              List <Reimbursement> reimbursementList = reDao.viewPastTickets(emp.getEmployee_id());
 		              ctx.json(reimbursementList);
 			
 		}
@@ -88,4 +88,45 @@ public class ReimbursementController
 			
 		}
 	}
+	 
+	public static void updateStatus(Context ctx) {
+		
+		Employee manager = AuthenticateController.verifyM(ctx);
+		
+		if(manager!=null) {
+			
+			String id = ctx.formParam("reimbursement_id");
+		    String status = ctx.formParam("status");
+            int reID = Integer.parseInt(id);
+            
+            reDao.updateStatus(reID, status);
+            ctx.result("Update Successfully");
+         }
+		
+		else {
+			ctx.result("Please login first");
+			ctx.status(HttpStatus.FORBIDDEN_403);
+		}
+		
 	}
+	
+	public static void viewPastEmployeeHistory(Context ctx){
+		
+		
+        Employee manager = AuthenticateController.verifyM(ctx);
+		
+		if(manager!=null) {
+			
+		String employee_id = ctx.formParam("employee_id");
+		 int eID = Integer.parseInt(employee_id);
+		List <Reimbursement> reimbursementList = reDao.getReimbursementById(eID);
+		ctx.json(reimbursementList);
+		
+	}
+		else {
+			ctx.result("login first");
+			ctx.status(HttpStatus.FORBIDDEN_403);
+		}
+		
+	}
+}
