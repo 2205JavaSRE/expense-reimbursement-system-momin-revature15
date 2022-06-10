@@ -35,7 +35,11 @@ public class ReimbursementController
    reDao.createReimbursement(r);
     
 	}
-	
+	else {
+		
+	}
+	ctx.result("login first.");
+	ctx.status(HttpStatus.FORBIDDEN_403);
 	
 	
 	}

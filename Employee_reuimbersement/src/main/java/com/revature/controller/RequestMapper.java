@@ -1,8 +1,11 @@
 package com.revature.controller;	
+import io.micrometer.prometheus.PrometheusConfig;
+import io.micrometer.prometheus.PrometheusMeterRegistry;
 
 
 import io.javalin.Javalin;
 import io.javalin.http.HttpCode;
+import io.micrometer.core.instrument.Counter;
 
 public class RequestMapper {
 
@@ -48,17 +51,17 @@ public class RequestMapper {
 			ReimbursementController.allReimbursementRequests(ctx); 
 		 });
 		 
-		 app.get("/updateStatus",ctx->{
+		 app.post("/updateStatus",ctx->{
 			 
 				ReimbursementController.updateStatus(ctx);
 			 });
  
 		 app.get("/viewPastHistoryEmployees",ctx->{
+			
 			 ReimbursementController.viewPastEmployeeHistory(ctx);
 			 
 			 });
 		 
-	
 	}
 	
 
