@@ -10,5 +10,6 @@ com\revature\MainDriver.class
 com\revature\dao\EmployeeDao.class
 com\revature\models\Reimbursement.class
 com\revature\dao\ReimbursementDao.class
+com\revature\controller\Prometheus.class
 com\revature\controller\ReimbursementController.class
 com\revature\service\EmployeeService.class
