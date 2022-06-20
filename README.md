@@ -40,3 +40,8 @@ NOTE: Include any configuration files in this repository, make sure to avoid add
 5. Prometheus 
 6. Grafana 
 7. Any 3rd Party Plugins as required
+
+Getting Started
+git clone git@github.com:2205JavaSRE/project-0-momin-revature15.git
+![Capture](https://user-images.githubusercontent.com/105263629/174546190-f0df7cad-e5c0-406e-8ab3-27a74df95b13.PNG)
+
